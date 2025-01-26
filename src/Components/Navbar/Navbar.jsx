@@ -41,11 +41,11 @@ const Navbar = () => {
             <li> <NavLink className='font-bold '>Shope</NavLink></li>
             <li><NavLink className='font-bold '>About Us</NavLink></li>
 
-            <li><NavLink className='font-bold'>Join Us</NavLink></li>
+            <li><NavLink to={'/signup'} className='font-bold'>Join Us</NavLink></li>
         </ul>
       </div>
         <div className="lg:hidden flex navbar-end">
-            <button className="btn bg-[#82B440] font-semibold text-white">Join us</button>
+            <Link to={'/signup'}><button className="btn bg-[#82B440] font-semibold text-white">Join us</button></Link>
         </div>
     </div>
   );
