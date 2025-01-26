@@ -1,8 +1,10 @@
 import React from 'react';
 import icon from '../../assets/image/icon.png'
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
-    const handleLogin = (e) => {
+
+    const handlesignup = (e) => {
         e.preventDefault();
         const name = e.target.name.value
         const email = e.target.email.value
@@ -25,7 +27,7 @@ const Signup = () => {
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Sign Up
         </h2>
-        <form onSubmit={handleLogin} className="space-y-4">
+        <form onSubmit={handlesignup} className="space-y-4">
           {/* Email Field */}
           <div className="form-control">
             <label className="label">
@@ -87,18 +89,11 @@ const Signup = () => {
               className="input input-bordered w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
-            <label className="label text-right">
-              <a
-                className="label-text-alt text-blue-500 hover:underline"
-              >
-                Forgot password?
-              </a>
-            </label>
           </div>
 
           {/* Submit Button */}
           <div className="form-control mt-4">
-            <button className="btn btn-primary w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">
+            <button className="btn w-full bg-[#82B840] text-white font-bold py-2 px-4 rounded-lg">
               Sign Up
             </button>
           </div>
@@ -107,8 +102,8 @@ const Signup = () => {
         {/* Login Link */}
         <p className="text-center text-gray-600 mt-4">
           Already have an account?{" "}
-          <a href="#" className="text-blue-500 hover:underline">
-            Login
+          <a href="#" className="text-[#82B840] hover:underline">
+            <Link to={'/login'}>Login</Link>
           </a>
         </p>
       </div>
