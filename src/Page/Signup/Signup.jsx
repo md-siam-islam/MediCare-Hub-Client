@@ -45,6 +45,15 @@ const Signup = () => {
             e.target.reset()
           }) 
         })
+        .catch((error) => {
+          const errorMessage =
+            error.message || "Something went wrong. Please try again.";
+          return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: errorMessage,
+          });
+        });
 
         
     }
