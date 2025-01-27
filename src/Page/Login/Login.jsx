@@ -1,14 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
 import icon from "../../assets/image/icon.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Authprovider/Authprovider";
+import Swal from "sweetalert2";
 
 const Login = () => {
-
+  const navigate = useNavigate()
+    const {setUser,UserLogin} = useContext(AuthContext)
     const handleSignin = (e) => {
         e.preventDefault();
         const email = e.target.email.value
         const password = e.target.password.value
         console.log(email,password);
+
+        UserLogin(email,password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          setUser(user);
+          e.target.reset();
+          navigate("/");
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Login Successfull ",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        })
+  
+        .catch((error) => {
+          const errorMessage =
+            error.message || "Something went wrong. Please try again.";
+          return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: errorMessage,
+          });
+        });
     }
   return (
     <div className="flex items-center justify-center flex-col min-h-screen  py-6 w-10/12 mx-auto">
