@@ -32,15 +32,14 @@ const Navbar = () => {
             <Link>About Us</Link>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl md:text-2xl text-[#82B440] font-serif">MediCare Hub <span><img src={icon} className="w-7" alt="" /></span></a>
+        <a className="btn btn-ghost text-xl md:text-2xl text-[#82B440]">MediCare Hub <span><img src={icon} className="w-7" alt="" /></span></a>
       </div>
 
       <div className="navbar-end hidden lg:flex gap-5">
         <ul className="menu menu-horizontal px-1">
-            <li><NavLink className='font-bold '>Home</NavLink></li>
-            <li> <NavLink className='font-bold '>Shope</NavLink></li>
-            <li><NavLink className='font-bold '>About Us</NavLink></li>
-
+            <li><NavLink className='font-semibold '>Home</NavLink></li>
+            <li> <NavLink className='font-semibold '>Shope</NavLink></li>
+            <li><NavLink className='font-semibold '>About Us</NavLink></li>
             <li><NavLink to={'/login'} className='font-bold'>Join Us</NavLink></li>
         </ul>
       </div>
