@@ -1,19 +1,50 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import icon from '../../assets/image/icon.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Authprovider/Authprovider';
+import Swal from 'sweetalert2';
 
 const Signup = () => {
-
+  const navigate = useNavigate()
+    const {setUser,userSignup,userInfo} = useContext(AuthContext)
     const handlesignup = (e) => {
         e.preventDefault();
         const name = e.target.name.value
         const email = e.target.email.value
         const photo = e.target.photo.value
         const password = e.target.password.value
+
         const userData = {
             name,email,photo,password
         }
-        console.log(userData);
+        if (password.length < 6) {
+          return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Password must be at least 6 characters long",
+          });
+        }
+    
+        const passwordPattern =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    
+        if (!passwordPattern.test(password)) {
+          return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Password is not strong enough.",
+          });
+        }
+        userSignup(email,password)
+        .then((res) => {
+          const user = res.user
+          setUser(user)
+          userInfo({displayName:name,photoURL:photo})
+          .then(() => {
+            navigate('/')
+            e.target.reset()
+          }) 
+        })
 
         
     }

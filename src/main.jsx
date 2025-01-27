@@ -8,32 +8,35 @@ import Homelayout from "./Components/HomeLayout/Homelayout";
 import Signup from "./Page/Signup/Signup";
 import Login from "./Page/Login/Login";
 import Home from "./Components/Home/Home";
+import Authprovider from "./Authprovider/Authprovider";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Homelayout></Homelayout>,
-    children:[
+    children: [
       {
-        path:'/',
-        element:<Home></Home>
-      }
-    ]
+        path: "/",
+        element: <Home></Home>,
+      },
+    ],
   },
   {
-    path:'/signup',
-    element:<Signup></Signup>
+    path: "/signup",
+    element: <Signup></Signup>,
   },
   {
-    path:'/login',
-    element:<Login></Login>
-  }
+    path: "/login",
+    element: <Login></Login>,
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <div style={{ fontFamily: 'Lexend, serif' }}>
-      <RouterProvider router={router} />
+    <div style={{ fontFamily: "Lexend, serif" }}>
+      <Authprovider>
+        <RouterProvider router={router} />
+      </Authprovider>
     </div>
   </StrictMode>
 );
